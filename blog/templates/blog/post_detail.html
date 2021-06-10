@@ -9,6 +9,9 @@
             </div>
         {% endif %}
         <h2>{{ post.title }}</div>
+        {% comment %} | go to right {% endcomment %}
         <p>{{ post.text|linebreaksbr }}</p>
+        {% comment %} <p>{{ post.text | lower }}</p> {% endcomment %}
+        {% comment %} <p>{{ post.text }}</p> {% endcomment %}
     </div>
 {% endblock%}
