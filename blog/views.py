@@ -41,3 +41,23 @@ def post_new(request):
         form = PostForm()
 
     return render(request, 'blog/post_edit.html', {'form': form})
+
+
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        # instance=post: 更新処理時は必要。postをinstanceとして渡す。
+        # ないとcreate新規作成と判断される
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        # instance=post: 更新処理時は必要。postをinstanceとして渡す。
+        # ないとcreate新規作成と判断される
+        form = PostForm(instance=post)
+    return render(request, 'blog/post_edit.html', {'form': form})
