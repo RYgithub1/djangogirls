@@ -34,6 +34,7 @@ def post_new(request):
             # Add  other field.
             post.author = request.user
             post.published_date = timezone.now()
+
             # Only data saving.
             post.save()
             return redirect('post_detail', pk=post.pk)

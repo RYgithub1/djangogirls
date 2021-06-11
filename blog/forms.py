@@ -7,6 +7,9 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
+        # fields = ('title', 'text', 'author', 'published_date', 'created_date')
         # fields = ('title', 'text', 'author', 'published_date')
         # UX: User unlike to write author(=user) name and publish_date.
-        fields = ('title', 'text',)
+        # widget = {'post_type': forms.RadioSelect()}
+        # fields = ('title', 'text', 'widget')
+        fields = ('title', 'text', 'post_type')

@@ -3,6 +3,13 @@ from django.conf import settings
 from django.utils import timezone
 
 
+
+POST_TYPE_CHOICE = (('lifestyle', 'Lifestyle'),
+                            ('anime', 'Anime'),
+                            ('nature', 'Nature'))
+
+
+
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -10,6 +17,10 @@ class Post(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+
+    # Add post type.
+    post_type = models.CharField(choices=POST_TYPE_CHOICE, max_length=20, default='lifestyle')
+
 
     def publish(self):
         self.published_date = timezone.now()
