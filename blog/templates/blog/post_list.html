@@ -2,15 +2,90 @@
 
 
 {%block content%}
-    {% for post in posts %}
-        <div class="post">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a href="#posttypeall" class="nav-link active" data-toggle="tab">All</a>
+        </li>
+        <li class="nav-item">
+            <a href="#posttypelifestyle" class="nav-link" data-toggle="tab">Lifestyle</a>
+        </li>
+        <li class="nav-item">
+            <a href="#posttypeanime" class="nav-link" data-toggle="tab">Anime</a>
+        </li>
+        <li class="nav-item">
+            <a href="#posttypenature" class="nav-link" data-toggle="tab">Nature</a>
+        </li>
+    </ul>
 
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-            {% comment %} 'url'=basURL (xxx:8000/baseurl) {% endcomment %}
-            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
+
+    <div class="tab-content">
+        <div id="posttypeall" class="tab-pane active">
+            <h1>ALL</h1>
+            {% for post in posts %}
+                <div class="post">
+                    <div class="date">
+                        {{ post.published_date }}
+                    </div>
+                    <div>{{ post.post_type}}</div>
+                    {% comment %} 'url'=basURL (xxx:8000/baseurl) {% endcomment %}
+                    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+
+        <div id="posttypelifestyle" class="tab-pane">
+            <h1>LIFESTYLE</h1>
+            {% for post in posts %}
+                {% comment %} l/Lifestyle: valueでなくkeyで比較 {% endcomment %}
+                {% if post.post_type == "lifestyle" %}
+                    <div class="post">
+                        <div class="date">
+                            {{ post.published_date }}
+                        </div>
+                        <div>{{ post.post_type}}</div>
+                        {% comment %} 'url'=basURL (xxx:8000/baseurl) {% endcomment %}
+                        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endif%}
+            {% endfor %}
+        </div>
+
+        <div id="posttypeanime" class="tab-pane">
+            <h1>ANIME</h1>
+            {% for post in posts %}
+                {% comment %} l/Lifestyle: valueでなくkeyで比較 {% endcomment %}
+                {% if post.post_type == "anime" %}
+                    <div class="post">
+                        <div class="date">
+                            {{ post.published_date }}
+                        </div>
+                        <div>{{ post.post_type}}</div>
+                        {% comment %} 'url'=basURL (xxx:8000/baseurl) {% endcomment %}
+                        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div id="posttypenature" class="tab-pane">
+            <h1>NATURE</h1>
+            {% for post in posts %}
+                {% comment %} l/Lifestyle: valueでなくkeyで比較 {% endcomment %}
+                {% if post.post_type == "nature" %}
+                    <div class="post">
+                        <div class="date">
+                            {{ post.published_date }}
+                        </div>
+                        <div>{{ post.post_type}}</div>
+                        {% comment %} 'url'=basURL (xxx:8000/baseurl) {% endcomment %}
+                        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 {%endblock%}
