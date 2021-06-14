@@ -10,6 +10,4 @@ class PostForm(forms.ModelForm):
         # fields = ('title', 'text', 'author', 'published_date', 'created_date')
         # fields = ('title', 'text', 'author', 'published_date')
         # UX: User unlike to write author(=user) name and publish_date.
-        # widget = {'post_type': forms.RadioSelect()}
-        # fields = ('title', 'text', 'widget')
         fields = ('title', 'text', 'post_type')

@@ -38,6 +38,7 @@
             <h1>LIFESTYLE</h1>
             {% for post in posts %}
                 {% comment %} l/Lifestyle: valueでなくkeyで比較 {% endcomment %}
+                {% comment %} {% if post.post_type == "Lifestyle" %} {% endcomment %}
                 {% if post.post_type == "lifestyle" %}
                     <div class="post">
                         <div class="date">

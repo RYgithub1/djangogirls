@@ -20,6 +20,9 @@ class Post(models.Model):
 
     # Add post type.
     post_type = models.CharField(choices=POST_TYPE_CHOICE, max_length=20, default='lifestyle')
+    # When changed model, Need both maikemigrations and migrate.
+    # SAMPLE
+    # flag = models.CharField(max_length=200, default='1')
 
 
     def publish(self):
