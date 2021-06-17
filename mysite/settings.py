@@ -30,7 +30,8 @@ SECRET_KEY = 'django-insecure-_d1+5l800ctolzmz8i2!efnism(ms8b_$y=_k_6ogvntymo9k4
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+# ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['django-env-dns.ap-southeast-1.elasticbeanstalk.com']
 
 
 # Application definition
