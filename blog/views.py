@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Post
 from .forms import PostForm
@@ -50,13 +50,15 @@ def post_new(request):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
-
+# def post_new(request):
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         # instance=post: 更新処理時は必要。postをinstanceとして渡す。
         # ないとcreate新規作成と判断される
         form = PostForm(request.POST, instance=post)
+        # ただ、このポストを編集するためにただフォームを開く場合は下
+        # form = PostForm(instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
